@@ -24,12 +24,37 @@ class DishDetail extends Component {
         }
     }
 
+    renderComments(dish) {
+        if (dish != null) {
+            return (
+                <div className = "col-12 col-md-5">
+                    <h4> Comments</h4>
+                    <ul className="list-unstyled">
+                        {dish.comments.map((comment) => {
+                            return (
+                                <li key = {comment.id}>
+                                    <p>{comment.comment}</p>
+                                    <p>--{comment.author}, {comment.date}</p>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            );
+        } else {
+            return (
+                <div></div>
+            );
+        }
+    }
+
     render() {
         return (
             <div className = "row">
-                <div className = "col-12 col-md-5">
+                <div className = "col-12 col-md-5 m-1">
                     {this.renderDish(this.props.selectedDish)}
                 </div>
+                {this.renderComments(this.props.selectedDish)}
             </div>
         );
     }
