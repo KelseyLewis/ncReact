@@ -6,6 +6,14 @@ class DishDetail extends Component {
         super(props); 
     }
 
+    componentDidMount() {
+        console.log('DishDetail ComponentDidMount invoked');
+    }
+
+    componentDidUpdate() {
+        console.log('DishDetail ComponentDidUpdate invoked');
+    }
+
     renderDish(dish) {
         if (dish != null) {
             return (
@@ -34,7 +42,7 @@ class DishDetail extends Component {
                             return (
                                 <li key = {comment.id}>
                                     <p>{comment.comment}</p>
-                                    <p>--{comment.author}, {comment.date}</p>
+                                    <p>--{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                                 </li>
                             );
                         })}
@@ -50,11 +58,13 @@ class DishDetail extends Component {
 
     render() {
         return (
-            <div className = "row">
-                <div className = "col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.selectedDish)}
+            <div className = "container">
+                <div className = "row">
+                    <div className = "col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.selectedDish)}
+                    </div>
+                    {this.renderComments(this.props.selectedDish)}
                 </div>
-                {this.renderComments(this.props.selectedDish)}
             </div>
         );
     }
