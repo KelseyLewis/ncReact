@@ -34,9 +34,13 @@ class Main extends Component {
       );
     }
 
+    //because <Route link that calls this function has path="/menu/:dishId", 
+    //everything after colon is passed as the {match} variable to the function.
+    //In this case match = dishId as a string. Ex '0' - have to use match.params.name to access match value
     const DishWithId = ({match}) => {
       return(
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+          //returns a comments array
           comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
       );
     };
@@ -46,8 +50,8 @@ class Main extends Component {
             <Header />
             <Switch>
               <Route path="/home" component={HomePage} />
-              <Route path="/aboutus" component={() => <About leaders={this.state.leaders} />} />
-              <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+              <Route path="/aboutus" render={() => <About leaders={this.state.leaders} />} />
+              <Route exact path="/menu" render={() => <Menu dishes={this.state.dishes} />} />
               <Route path="/menu/:dishId" component={DishWithId} />
               <Route exact path="/contactus" component={Contact} />
               <Redirect to="/home" />
