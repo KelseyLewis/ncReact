@@ -14,7 +14,7 @@ const mapStateToProps = state => {
   return {
     dishes: state.dishes,
     comments: state.comments,
-    promos: state.promotions,
+    promotions: state.promotions,
     leaders: state.leaders
   }
 }
@@ -32,7 +32,7 @@ class Main extends Component {
       return (
         <Home dish={this.props.dishes.filter((dish) => dish.featured)[0]}
           leader={this.props.leaders.filter((leader) => leader.featured)[0]}
-          promo={this.props.promos.filter((promo) => promo.featured)[0]} />
+          promotion={this.props.promotions.filter((promotion) => promotion.featured)[0]} />
       );
     }
 
