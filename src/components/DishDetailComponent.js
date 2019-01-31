@@ -1,8 +1,17 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Media } from 'reactstrap';
+import React, { Component } from 'react';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Media, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
+class CommentForm extends Component {
+    render(){
+        return(
+            <Button type="submit" color="btn-default">
+            <i class="fa fa-pencil"></i> Submit Comment
+            </Button>
+        );
+    }
+}
 function RenderDish({dish}) {
     if (dish != null) {
         console.log(dish.name);
@@ -39,6 +48,7 @@ function RenderComments({comments}) {
                         );
                     })}
                 </ul>
+                <CommentForm />
             </div>
         );
     } else {
