@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
 
-// The Add Comment button you set up in Task 1 must now toggle on a modal. ​
-
-// Inside the modal, set up a form as a local form using react-redux-form with three fields: author, rating, comment.​
-
-// Implement the rating field in the comment form with a select and options 1-5, the author with a text field, and the comment with a textarea that has six row
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
 
 class CommentForm extends Component {
     constructor(props) {
@@ -51,17 +49,6 @@ class CommentForm extends Component {
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </Control.select>
-
-                                {/* <Errors
-                                    className="text-danger"
-                                    model=".firstname"
-                                    show="touched"
-                                    messages={{
-                                        required: 'Required',
-                                        minLength: 'Must be greater than 2 characters',
-                                        maxLength: 'Must be 15 characters or less'
-                                    }}
-                                /> */}
                             </Col>
                         </Row>
                         <Row className="form-group">
@@ -70,20 +57,20 @@ class CommentForm extends Component {
                                 <Control.text model=".name" id="name" name="name"
                                     placeholder="Your Name"
                                     className="form-control"
-                                    // validators={{
-                                    //     required, minLength: minLength(3), maxLength: maxLength(15)
-                                    // }}
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(15)
+                                    }}
                                     />
-                                {/* <Errors
+                                <Errors
                                     className="text-danger"
-                                    model=".firstname"
+                                    model=".name"
                                     show="touched"
                                     messages={{
-                                        required: 'Required',
+                                        required: 'Required ',
                                         minLength: 'Must be greater than 2 characters',
                                         maxLength: 'Must be 15 characters or less'
                                     }}
-                                /> */}
+                                />
                             </Col>
                         </Row>
                         <Row className="form-group">
