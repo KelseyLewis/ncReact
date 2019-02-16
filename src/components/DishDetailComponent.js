@@ -36,6 +36,7 @@ class CommentForm extends Component {
             values.author,
             values.comment
           );
+          console.log(values)
       }
 
     render(){
@@ -47,7 +48,7 @@ class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="rating" md={12}>Rating</Label>
                                 <Col md={12}>
@@ -91,7 +92,7 @@ class CommentForm extends Component {
                                         rows="6" className="form-control"/>
                                 </Col>
                             </Row>
-                            <Button type="submit" onClick={this.handleSubmit} className="bg-primary">Submit</Button>
+                            <Button type="submit" className="bg-primary">Submit</Button>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
