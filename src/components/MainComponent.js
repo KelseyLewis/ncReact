@@ -19,7 +19,7 @@ const mapStateToProps = state => {
     dishes: state.dishes,
     comments: state.comments,
     promotions: state.promotions,
-    //leaders: state.leaders
+    leaders: state.leaders
   }
 }
 
@@ -29,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
-  //fetchLeaders: () => dispatch(fetchLeaders()),
+  fetchLeaders: () => dispatch(fetchLeaders()),
 });
 
 
@@ -45,25 +45,13 @@ class Main extends Component {
       this.props.fetchDishes();
       this.props.fetchComments();
       this.props.fetchPromos();
-      //this.props.fetchLeaders();
+      this.props.fetchLeaders();
     }
 
   render() {
 
     const HomePage = () => {
       return(
-        // <Home 
-        //   dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
-        //   dishesLoading={this.props.dishes.isLoading}
-        //   dishesErrMess={this.props.dishes.errMess}
-        //   promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
-        //   promoLoading={this.props.promotions.isLoading}
-        //   promoErrMess={this.props.promotions.errMess}
-        //   leader={this.props.leaders.filter((leader) => leader.featured)[0]}
-        //   // leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
-        //   // leaderLoading={this.props.leaders.isLoading}
-        //   // leaderErrMess={this.props.leaders.errMess}
-        // />
         <Home 
         dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
         dishesLoading={this.props.dishes.isLoading}
@@ -71,10 +59,13 @@ class Main extends Component {
         promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
         promoLoading={this.props.promotions.isLoading}
         promoErrMess={this.props.promotions.errMess}
-        //leader={this.props.leaders.filter((leader) => leader.featured)[0]}
-    />
-      );
-    }
+        leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+        //leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+        //leaderLoading={this.props.leaders.isLoading}
+        //leaderErrMess={this.props.leaders.errMess}
+      />
+    );
+  }
     //because <Route link that calls this function has path="/menu/:dishId", 
     //everything after colon is passed as the {match} variable to the function.
     //In this case match = dishId as a string. Ex '0' - have to use match.params.name to access match value
@@ -84,7 +75,7 @@ class Main extends Component {
             isLoading={this.props.dishes.isLoading}
             errMess={this.props.dishes.errMess}
             //returns a comments array
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+            comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
             //allows addComment function to be used
             addComment={this.props.addComment}
             commentsErrMess={this.props.comments.errMess}

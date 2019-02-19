@@ -1,3 +1,6 @@
+How to start JSON server
+json-server --watch db.json -p 3001 -d 2000
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
